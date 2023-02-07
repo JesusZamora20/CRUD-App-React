@@ -18,7 +18,7 @@ function CrudApi(){
     }
 
     const DeleteData = (id) => {
-        let isDelete = window.confirm(`Are you sure yu wanna delete ${id}`);
+        let isDelete = window.confirm(`Are you sure you wanna delete ${id}`);
 
         if(isDelete){
             let newData = db.filter(el => el.id !== id);
