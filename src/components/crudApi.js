@@ -14,7 +14,7 @@ function CrudApi(){
     const [loading, setLoading] = useState(null);
 
     let url = "http://localhost:5000/santos";
-
+    
     useEffect(() => {
         setLoading(true);
         helpHttp().get(url).then(res => {
@@ -26,27 +26,62 @@ function CrudApi(){
                 setDb(null);
                 setError(res);
             }
-
+            
             setLoading(false);
         })
     },[])
-
+    
     const CreateData = (data) => {
+        let options = {
+            body:data, 
+            headers:{"content-type": "application/json"}
+        };
         data.id = Date.now();
-        setDb([...db, data]);
+        helpHttp().post(url, options).then((res) => {
+            // console.log(res);
+            if(!res.err){
+                setDb([...db, res]);
+            } else {
+                setError(res);
+            }
+        });
     }
 
     const UpdateData = (data) => {
-        let newData = db.map((el) => el.id === data.id ? data : el);
-        setDb(newData);
+        let endpoint = `${url}/${data.id}`;
+        // console.log(endpoint)
+        let options = {
+            body:data, 
+            headers:{"content-type": "application/json"}
+        };
+
+        helpHttp().put(endpoint,options).then(res =>{
+            if(!res.err){
+                let newData = db.map((el) => el.id === data.id ? data : el);
+                setDb(newData);
+            } else {
+                setError(res);
+            }
+        })
     }
 
     const DeleteData = (id) => {
+        let endpoint = `${url}/${id}`;
         let isDelete = window.confirm(`Are you sure you wanna delete ${id}`);
 
+        let options = {
+            headers:{"content-type": "application/json"}
+        };
+
         if(isDelete){
-            let newData = db.filter(el => el.id !== id);
-            setDb(newData);
+            helpHttp().del(endpoint,options).then(res => {
+                if(!res.err){
+                    let newData = db.filter(el => el.id !== id);
+                    setDb(newData);
+                } else {
+                    setError(res);
+                }
+            })
         } else {
             return;
         }
