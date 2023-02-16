@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Button, Stack, TextField, Typography} from '@mui/material';
 
 const initialDb = {
     name:'',
@@ -47,16 +48,29 @@ function CrudForm({CreateData, UpdateData, dataToEdit, setDataToEdit  }){
 
     return(
         <>
-            <h3>{dataToEdit ? 'Edit' : 'Add'}</h3>
+            <br/>
+            <Typography variant='h5'>{dataToEdit ? 'Edit' : 'Add'}</Typography>
+            <br/>
             <form onSubmit={handleSubmit}>
-                <input type='text' name='name' placeholder='Name'
-                onChange={handleChange} value={form.name}/>
+                <Stack spacing={2} direction='row'>
 
-                <input type='text' name='constellation' placeholder='constellation'
-                onChange={handleChange} value={form.constellation} />
+                <TextField label='Name' size='small' color='primary' 
+                onChange={handleChange} 
+                value={form.name} 
+                type='text' 
+                name='name'/>
 
-                <input type='submit' value='Send'/>
-                <input type='reset' value='Clean' onClick={handleReset}/>
+                <TextField label='Constellation' size='small' color='primary' 
+                onChange={handleChange} 
+                value={form.constellation} 
+                type='text' 
+                name='constellation'/>
+
+                
+
+                <Button type='submit' size='small' variant='contained'>Send</Button>
+                <Button type='reset' size='small' color='primary' onClick={handleReset}>Clean</Button>
+                </Stack>
             </form>
         </>
     );

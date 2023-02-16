@@ -5,6 +5,7 @@ import CrudForm from './crudForm';
 import CrudTable from './crudTable';
 import Loader from './Loader';
 import Message from './Message';
+import { Typography } from '@mui/material';
 
 
 function CrudApi(){
@@ -89,7 +90,7 @@ function CrudApi(){
 
     return(
         <>
-            <h2>CRUD API</h2>
+            <Typography variant='h4'>CRUD API</Typography>
             <CrudForm 
             CreateData={CreateData} 
             UpdateData={UpdateData}

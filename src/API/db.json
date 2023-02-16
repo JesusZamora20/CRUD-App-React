@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Seiya",
-      "constellation": "Pegaso"
+      "constellation": "Pegasa"
     },
     {
       "id": 2,
@@ -19,16 +19,6 @@
       "id": 4,
       "name": "Shun",
       "constellation": "Andromeda"
-    },
-    {
-      "id": 6,
-      "name": "sdfg",
-      "constellation": "sdfg"
-    },
-    {
-      "id": 7,
-      "name": "asdas",
-      "constellation": "asdf"
     }
   ]
 }
